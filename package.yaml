@@ -1,0 +1,49 @@
+# https://docs.npmjs.com/cli/configuring-npm/package-json
+$schema: https://json.schemastore.org/package.json
+name: "@danielbayley/uproot"
+description: Reliable method to find the root path of your git repo, [p]npm/yarn package or app.
+keywords:
+- root
+- project
+- path
+- find
+- toplevel
+- top-level
+- repository
+- git
+
+homepage: https://github.com/danielbayley/uproot#readme
+repository: danielbayley/uproot
+bugs: https://github.com/danielbayley/uproot/issues
+
+author:
+  name: Daniel Bayley
+  email: daniel.bayley@me.com
+  url: https://danielbayley.dev
+
+license: MIT
+
+type: module
+exports: &index ./index.js
+files: [*index]
+
+engines:
+  node: ">=14.16"
+  pnpm: ">=9"
+devEngines:
+  runtime:
+    name: node
+  packageManager:
+    name: pnpm
+packageManager: pnpm@9.14.2
+
+dependencies:
+  find-up: ^7.0.0
+devDependencies:
+  chokidar-cli: ^3.0.0
+  fs-fixture: ^2.6.0
+  np: ^10.0.7
+  yaml: ^2.6.1
+
+scripts:
+  prepare: yaml --single --json --indent 2 < package.yaml > package.json
