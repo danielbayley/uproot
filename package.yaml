@@ -1,5 +1,6 @@
 # https://docs.npmjs.com/cli/configuring-npm/package-json
 $schema: https://json.schemastore.org/package.json
+version: 0.0.0
 name: "@danielbayley/uproot"
 description: Reliable method to find the root path of your git repo, [p]npm/yarn package or app.
 keywords:
@@ -30,11 +31,6 @@ files: [*index]
 engines:
   node: ">=14.16"
   pnpm: ">=9"
-devEngines:
-  runtime:
-    name: node
-  packageManager:
-    name: pnpm
 packageManager: pnpm@9.14.2
 
 dependencies:
@@ -47,3 +43,9 @@ devDependencies:
 
 scripts:
   prepare: yaml --single --json --indent 2 < package.yaml > package.json
+  prerelease: git stash --include-untracked --keep-index && pnpm prepare
+  release: np --no-release-draft --no-tests
+  postrelease: git stash pop --quiet
+  watch: chokidar package.yaml --command "pnpm prepare"
+  clean: rm -f *.json
+  zap: pnpm clean -r node_modules
