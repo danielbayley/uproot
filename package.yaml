@@ -38,14 +38,43 @@ dependencies:
 devDependencies:
   chokidar-cli: ^3.0.0
   fs-fixture: ^2.6.0
-  np: ^10.0.7
+  jase: ^1.2.0
+  publint: ^0.2.12
+  replace-in-file: ^8.2.0
   yaml: ^2.6.1
 
+config:
+  yaml-json: yaml --single --json --indent 2
+publishConfig:
+  access: public
+  directory: build #dist
+  #linkDirectory: true
+  #exports: TODO
+
 scripts:
-  prepare: yaml --single --json --indent 2 < package.yaml > package.json
-  prerelease: git stash --include-untracked --keep-index && pnpm prepare
-  release: np --no-release-draft --no-tests
-  postrelease: git stash pop --quiet
+  prepare: $npm_package_config_yaml_json < package.yaml > package.json
+
+  prepublishOnly: >-
+    git stash --include-untracked --keep-index &&
+    mkdir -p $npm_package_publishConfig_directory &&
+    $npm_package_config_yaml_json < package.yaml |
+    jase scripts.prepare --delete > $npm_package_publishConfig_directory/package.json &&
+    cp $npm_package_files_0 *.md $npm_package_publishConfig_directory &&
+
+  #prerelease: pnpm prepare
+  release: pnpm version
+  postrelease: pnpm publish
+
+  #TODO: pnpm pack --json #| jase filename | TODO #npm pack --dry-run
+  #pnpm publish *.tgz #danielbayley-uproot-0.0.0.tgz
+
+  version: >-
+    replace-in-file version:\ $npm_{old,new}_version package.yaml &&
+    git commit --message $npm_new_version package.yaml &&
+    git push
+
+  #postpublish: git stash pop --quiet
+
   watch: chokidar package.yaml --command "pnpm prepare"
-  clean: rm -f *.json
-  zap: pnpm clean -r node_modules
+  clean: rm -rf package.json $npm_package_publishConfig_directory
+  zap: pnpm clean node_modules
