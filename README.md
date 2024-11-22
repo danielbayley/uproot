@@ -68,7 +68,7 @@ License
 [git]:                    https://git-scm.com/docs/git-rev-parse#Documentation/git-rev-parse.txt---show-toplevel
 
 [`pnpm-workspace.yaml`]:  https://pnpm.io/pnpm-workspace_yaml
-[`package.yaml`]:         https://github.com/pnpm/pnpm/issues/1100
+[`package.yaml`]:         https://github.com/pnpm/pnpm/pull/1799
 [`package.json`]:         https://docs.npmjs.com/creating-a-package-json-file
 [`pnpm-lock.yaml`]:       https://pnpm.io/git#lockfiles
 [`yarn.lock`]:            https://classic.yarnpkg.com/docs/yarn-lock
