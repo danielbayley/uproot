@@ -23,7 +23,7 @@ const folders = [
   "src",
   "public",
 ]
-const patterns = [
+export const match = [
   "pnpm-*.yaml",
   "package.{yaml,json}",
   ...lockfiles,
@@ -40,8 +40,8 @@ export async function uproot(options = {}) {
   const {stdout} = await shell(command).catch(error) ?? {}
   let root = stdout?.trimEnd()
 
-  options.patterns ??= patterns
-  const pattern = `@(${options.patterns.join(pipe)})`
+  options.match ??= match
+  const pattern = `@(${options.match.join(pipe)})`
 
   options.parse = true
   root ??= await matchup(pattern, options).then(({ dir }) => dir).catch(error)
