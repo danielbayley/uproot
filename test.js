@@ -12,9 +12,6 @@ const { dirname } = import.meta
 const subpath = join("node_modules", ...dirname.split(sep).slice(-2))
 const shell   = promisify(exec)
 
-assert.includes  ??= (a, b) => assert.equal(a.includes(b), true)
-assert.equalPath ??= (a, b) => assert.equal(resolve(a), resolve(b))
-
 describe("root", () =>
   it("exports static root path on module import", () =>
     assert.equal(root, dirname)))
