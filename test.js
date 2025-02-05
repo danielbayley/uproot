@@ -7,7 +7,7 @@ import { sep, join, resolve } from "node:path"
 import { createFixture } from "fs-fixture"
 
 const module = "./index.js"
-const { root, uproot } = await import(module)
+const { root, uproot, match } = await import(module)
 const { dirname } = import.meta
 const subpath = join("node_modules", ...dirname.split(sep).slice(-2))
 const shell   = promisify(exec)
@@ -68,10 +68,18 @@ describe("uproot", () => {
     assert.equal(process.cwd(), root)
   })
 
-  it("provides an option to override patterns", async () => {
+  it("provides a 'match' option to override patterns", async () => {
     fixtures.writeFile(".gitignore", "*")
-    const root = await uproot({ patterns: [], cwd })
+    const root = await uproot({ match: [], cwd })
     assert.equal(cwd, root)
+  })
+
+  it("or append more patterns", async () => {
+    const tsconfig = "tsconfig.json"
+    fixtures.writeFile(tsconfig, "{}")
+    match.push(tsconfig)
+    const root = await uproot({ cwd, match })
+    assert.equal(resolve(fixtures.path), root)
   })
 
   it("passes other options onto dependency", async () => {
