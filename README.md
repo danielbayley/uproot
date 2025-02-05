@@ -3,20 +3,6 @@ Uproot
 Reliable method to find the root path of your `git` repository,
 \[[p][pnpm]\][npm]/[yarn] package, or app.
 
-## Install
-~~~ sh
-pnpm add @danielbayley/uproot
-~~~
-This package is _[ESM]_ [only], and so [requires] _[Node]_ [`>=`]
-[`14.16`] and must be [`import`]ed instead of [`require`]d:
-~~~ jsonc
-// package.json
-"type": "module",
-"engines": {
-  "node": ">=14.16"
-},
-~~~
-
 The algorithm is primarily reliant on [`git rev-parse --show-toplevel`][git],
 but will fallback on the following files to find the root path:
 
@@ -43,6 +29,28 @@ const root = await uproot()
 You can override these search paths by passing alternatives to `uproot`:
 ~~~ js
 const root = await uproot(".github", ".vscode")
+
+## Install
+~~~ sh
+pnpm install @danielbayley/matchup
+~~~
+> [!IMPORTANT]
+> This package is _[ESM]_ [only], so must be [`import`]ed instead of [`require`]d,
+> and [depends] on _[Node]_ [`>=`][][`20`].
+
+Specify this requirement with [`engines`] and/or [`devEngines`]:
+~~~ jsonc
+// package.json
+"type": "module",
+"engines": {
+  "node": ">=20"
+},
+"devEngines": {
+  "runtime": {
+    "name": "node",
+    "version": ">=20"
+  }
+},
 ~~~
 
 License
@@ -53,13 +61,15 @@ License
 [Daniel Bayley]:          https://github.com/danielbayley
 
 [node]:                   https://nodejs.org
-[requires]:               https://docs.npmjs.com/cli/v9/configuring-npm/package-json#engines
-[`>=`]:                   https://docs.npmjs.com/cli/v6/using-npm/semver#ranges
-[`14.16`]:                https://github.com/nodejs/node/blob/main/doc/changelogs/CHANGELOG_V14.md#14.16.0
 [ESM]:                    https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules
 [only]:                   https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
 [`import`]:               https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/import
 [`require`]:              https://nodejs.org/api/modules.html#requireid
+[depends]:                https://docs.npmjs.com/cli/v11/configuring-npm/package-json#engines
+[`>=`]:                   https://docs.npmjs.com/cli/v6/using-npm/semver#ranges
+[`20`]:                   https://github.com/nodejs/node/blob/main/doc/changelogs/CHANGELOG_V20.md
+[`engines`]:              https://docs.npmjs.com/cli/v11/configuring-npm/package-json#engines
+[`devEngines`]:           https://docs.npmjs.com/cli/v11/configuring-npm/package-json#devengines
 
 [npm]:                    https://npmjs.com
 [pnpm]:                   https://pnpm.io
