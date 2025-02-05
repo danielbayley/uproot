@@ -6,21 +6,21 @@ Reliable method to find the root path of your `git` repository,
 The algorithm is primarily reliant on [`git rev-parse --show-toplevel`][git],
 but will fallback on the following [_glob_ pattern]s to determine the `root` path:
 
-| Path/pattern            | Example                 |
-|:------------------------|:------------------------|
-| `pnpm-*.yaml`           | [`pnpm-workspace.yaml`] |
-| `package.{yaml,json}`   | [`package.yaml`]        |
-| [`package-lock.json`]   |                         |
-| [`npm-shrinkwrap.json`] |                         |
-| [`yarn.lock`]           |                         |
-| `.git*`                 | [`.gitignore`]          |
-| [`.npmrc`]              |                         |
-| [`.editorconfig`]       |                         |
-| `LICEN[SC]E*`           | `LICENSE.md`            |
-| [`.vscode/`]            |                         |
-| [`packages/`]           |                         |
-| `src/`                  |                         |
-| [`public/`]             |                         |
+| Path/pattern            | Examples                                         |
+|:------------------------|:-------------------------------------------------|
+| `pnpm-*.yaml`           | [`pnpm-workspace.yaml`], [`pnpm-lock.yaml`]      |
+| `package.{yaml,json}`   | [`package.json`], [`package.yaml`]               |
+| [`package-lock.json`]   |                                                  |
+| [`npm-shrinkwrap.json`] |                                                  |
+| [`yarn.lock`]           |                                                  |
+| `.git*`                 | [`.gitignore`], [`.gitattributes`], [`.github/`] |
+| [`.npmrc`]              |                                                  |
+| [`.editorconfig`]       |                                                  |
+| `LICEN[SC]E*`           | `LICENSE.md`                                     |
+| [`.vscode/`]            |                                                  |
+| [`packages/`]           |                                                  |
+| `src/`                  |                                                  |
+| [`public/`]             |                                                  |
 
 ## Examples
 ~~~ js
@@ -86,12 +86,16 @@ License
 
 [`pnpm-workspace.yaml`]:  https://pnpm.io/pnpm-workspace_yaml
 [`package.yaml`]:         https://github.com/pnpm/pnpm/pull/1799
+[`package.json`]:         https://docs.npmjs.com/cli/configuring-npm/package-json
+[`pnpm-lock.yaml`]:       https://pnpm.io/git#lockfiles
 [`package-lock.json`]:    https://docs.npmjs.com/cli/configuring-npm/package-lock-json
 [`npm-shrinkwrap.json`]:  https://docs.npmjs.com/cli/configuring-npm/npm-shrinkwrap-json
 [`yarn.lock`]:            https://classic.yarnpkg.com/docs/yarn-lock
 [`.gitignore`]:           https://git-scm.com/docs/gitignore#_description
+[`.gitattributes`]:       https://git-scm.com/docs/gitattributes#_description
 [`.npmrc`]:               https://pnpm.io/npmrc
 [`.editorconfig`]:        https://editorconfig.org
+[`.github/`]:             https://docs.github.com/actions/writing-workflows/workflow-syntax-for-github-actions#about-yaml-syntax-for-workflows
 [`.vscode/`]:             https://code.visualstudio.com/docs/getstarted/settings#_workspace-settings
 [`packages/`]:            https://pnpm.io/catalogs#the-catalog-protocol-catalog
 [`public/`]:              https://create-react-app.dev/docs/using-the-public-folder
