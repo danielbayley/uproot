@@ -1,10 +1,11 @@
 import {exec}      from "node:child_process"
 import {promisify} from "node:util"
-import {dirname}   from "node:path"
+import {matchup}   from "@danielbayley/matchup"
 
-const error = new Function
 const shell = promisify(exec)
-const command = "git rev-parse --show-toplevel"
+const cwd = import.meta.dirname
+function error() {} // noop
+const pipe = "|"
 
 const lockfiles = [
   "pnpm-lock.yaml",
@@ -21,15 +22,19 @@ const files = [
   ".gitignore",
 ]
 
-export async function uproot(...find) {
-  if (find.length === 0) {
-    const {stdout} = await shell(command).catch(error) ?? {}
-    if (stdout != null) return stdout.trimEnd()
-    find.push(...files)
-  }
-  const {findUp} = await import("find-up")
-  return findUp(find).then(dirname).catch(error)
-}
+export const root = await uproot({ cwd })
+export default root
 
-export default uproot
-export const root = await uproot()
+export async function uproot(options = {}) {
+  const command  = `git -C '${options.cwd}' rev-parse --show-toplevel`
+  const {stdout} = await shell(command).catch(error) ?? {}
+  let root = stdout?.trimEnd()
+
+  options.patterns ??= patterns
+  const pattern = `@(${options.patterns.join(pipe)})`
+
+  options.parse = true
+  root ??= await matchup(pattern, options).then(({ dir }) => dir).catch(error)
+
+  return root ?? options.cwd ?? process.cwd()
+}
