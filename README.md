@@ -13,7 +13,7 @@ but will fallback on the following [_glob_ pattern]s to determine the `root` pat
 | [`package-lock.json`]   |                         |
 | [`npm-shrinkwrap.json`] |                         |
 | [`yarn.lock`]           |                         |
-| [`.git*`]               | [`.gitignore`]          |
+| `.git*`                 | [`.gitignore`]          |
 | `.n[pv]mrc`             | [`.npmrc`]              |
 | [`.editorconfig`]       |                         |
 | `LICEN[SC]E*`           | `LICENSE.md`            |
