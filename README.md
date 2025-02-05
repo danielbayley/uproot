@@ -35,6 +35,7 @@ const root = await uproot()
 You can override these search paths by passing alternatives to `uproot`:
 ~~~ js
 const root = await uproot(".github", ".vscode")
+~~~
 
 ## Install
 ~~~ sh
