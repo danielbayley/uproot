@@ -39,12 +39,9 @@ dependencies:
   "@danielbayley/matchup": ^1.0.2
 
 devDependencies:
-  chokidar-cli: ^3.0.0
   fs-fixture: ^2.7.0
-  jase: ^1.2.0
-  publint: ^0.2.12
-  replace-in-file: ^8.2.0
-  yaml: ^2.6.1
+  publint: ^0.3.2
+  yaml: ^2.7.0
 
 scripts:
   prepare: yaml --single --json --indent ${TABSIZE:-2} < package.yaml > package.json
