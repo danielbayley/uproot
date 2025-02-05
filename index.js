@@ -14,7 +14,7 @@ const lockfiles = [
 ]
 const config = [
   ".git*",
-  ".n[pv]mrc",
+  ".npmrc",
   ".editorconfig",
 ]
 const folders = [

@@ -14,7 +14,7 @@ but will fallback on the following [_glob_ pattern]s to determine the `root` pat
 | [`npm-shrinkwrap.json`] |                         |
 | [`yarn.lock`]           |                         |
 | `.git*`                 | [`.gitignore`]          |
-| `.n[pv]mrc`             | [`.npmrc`]              |
+| [`.npmrc`]              |                         |
 | [`.editorconfig`]       |                         |
 | `LICEN[SC]E*`           | `LICENSE.md`            |
 | [`.vscode/`]            |                         |
