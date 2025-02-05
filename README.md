@@ -45,6 +45,15 @@ match.push("tsconfig.json")
 const root = await uproot({ match })
 ~~~
 
+Any additional [options] will be passed onto _[`matchup`]_:
+~~~ js
+import path from "node:path"
+
+const object = await uproot({ cwd, parse: true })
+const root = path.format(object)
+console.log(root) // ~/path/to/project/root
+~~~
+
 ## Install
 ~~~ sh
 pnpm install @danielbayley/matchup
@@ -89,6 +98,9 @@ License
 [`npm`]:                  https://npmjs.com
 [pnpm]:                   https://pnpm.io
 [`yarn`]:                 https://yarnpkg.com
+
+[`matchup`]:              https://github.com/danielbayley/matchup#readme
+[options]:                https://github.com/danielbayley/matchup#options
 
 [git]:                    https://git-scm.com/docs/git-rev-parse#Documentation/git-rev-parse.txt---show-toplevel
 [_glob_ pattern]:         https://globster.xyz
