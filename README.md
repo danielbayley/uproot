@@ -29,6 +29,7 @@ console.log(root) // ~/path/to/project/root
 ~~~
 ~~~ js
 import {uproot} from "@danielbayley/uproot"
+
 const cwd  = import.meta.dirname
 const root = await uproot({ cwd })
 ~~~
