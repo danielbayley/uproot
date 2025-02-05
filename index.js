@@ -8,18 +8,28 @@ function error() {} // noop
 const pipe = "|"
 
 const lockfiles = [
-  "pnpm-lock.yaml",
-  "yarn.lock",
   "package-lock.json",
   "npm-shrinkwrap.json",
+  "yarn.lock",
 ]
-const files = [
-  "pnpm-workspace.yaml",
-  "package.yaml",
-  "package.json",
+const config = [
+  ".git*",
+  ".n[pv]mrc",
+  ".editorconfig",
+]
+const folders = [
+  ".vscode",
+  "packages",
+  "src",
+  "public",
+]
+const patterns = [
+  "pnpm-*.yaml",
+  "package.{yaml,json}",
   ...lockfiles,
-  ".npmrc",
-  ".gitignore",
+  ...config,
+  "LICEN[SC]E*",
+  ...folders,
 ]
 
 export const root = await uproot({ cwd })
