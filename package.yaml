@@ -29,7 +29,7 @@ exports: &index ./index.js
 files: [*index]
 
 engines:
-  node: ">=14.16"
+  node: ">=20"
   pnpm: ">=10"
 packageManager: pnpm@10.2.0
 
