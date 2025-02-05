@@ -27,6 +27,8 @@ license: MIT
 type: module
 exports: &index ./index.js
 files: [*index]
+publishConfig:
+  access: public
 
 engines:
   node: ">=20"
@@ -44,38 +46,21 @@ devDependencies:
   replace-in-file: ^8.2.0
   yaml: ^2.6.1
 
-config:
-  yaml-json: yaml --single --json --indent 2
-publishConfig:
-  access: public
-  directory: build #dist
-  #linkDirectory: true
-  #exports: TODO
-
 scripts:
-  prepare: $npm_package_config_yaml_json < package.yaml > package.json
+  prepare: yaml --single --json --indent ${TABSIZE:-2} < package.yaml > package.json
 
-  prepublishOnly: >-
-    git stash --include-untracked --keep-index &&
-    mkdir -p $npm_package_publishConfig_directory &&
-    $npm_package_config_yaml_json < package.yaml |
-    jase scripts.prepare --delete > $npm_package_publishConfig_directory/package.json &&
-    cp $npm_package_files_0 *.md $npm_package_publishConfig_directory &&
+  test: node --experimental-test-coverage --test test.js
+  watch: pnpm test --watch
 
-  #prerelease: pnpm prepare
-  release: pnpm version
+  prerelease: git stash --include-untracked --keep-index && pnpm prepare
+  release: pnpm version --force --no-git-tag-version
   postrelease: pnpm publish
 
-  #TODO: pnpm pack --json #| jase filename | TODO #npm pack --dry-run
-  #pnpm publish *.tgz #danielbayley-uproot-0.0.0.tgz
+  prepublishOnly: publint
+  postpublish: git stash pop --quiet
 
   version: >-
-    replace-in-file version:\ $npm_{old,new}_version package.yaml &&
-    git commit --message $npm_new_version package.yaml &&
-    git push
-
-  #postpublish: git stash pop --quiet
-
-  watch: chokidar package.yaml --command "pnpm prepare"
-  clean: rm -rf package.json $npm_package_publishConfig_directory
-  zap: pnpm clean node_modules
+    sed -i "" -E "s/^(version: *)$npm_old_version\$/\\1$npm_new_version/" package.yaml &&
+    git commit --message  $npm_new_version package.yaml &&
+    git tag    --annotate $npm_new_version --message v$npm_new_version &&
+    git push   --follow-tags
