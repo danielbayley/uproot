@@ -1,10 +1,10 @@
 Uproot
 ======
 Reliable method to find the root path of your `git` repository,
-\[[p][pnpm]\][npm]/[yarn] package, or app.
+\[[`p`][pnpm]\][`npm`]/[`yarn`] package, or app.
 
 The algorithm is primarily reliant on [`git rev-parse --show-toplevel`][git],
-but will fallback on the following files to find the root path:
+but will fallback on the following [_glob_ pattern]s to determine the `root` path:
 
 | Path/pattern            | Example                 |
 |:------------------------|:------------------------|
@@ -77,11 +77,12 @@ License
 [`engines`]:              https://docs.npmjs.com/cli/v11/configuring-npm/package-json#engines
 [`devEngines`]:           https://docs.npmjs.com/cli/v11/configuring-npm/package-json#devengines
 
-[npm]:                    https://npmjs.com
+[`npm`]:                  https://npmjs.com
 [pnpm]:                   https://pnpm.io
-[yarn]:                   https://yarnpkg.com
+[`yarn`]:                 https://yarnpkg.com
 
 [git]:                    https://git-scm.com/docs/git-rev-parse#Documentation/git-rev-parse.txt---show-toplevel
+[_glob_ pattern]:         https://globster.xyz
 
 [`pnpm-workspace.yaml`]:  https://pnpm.io/pnpm-workspace_yaml
 [`package.yaml`]:         https://github.com/pnpm/pnpm/pull/1799
