@@ -34,10 +34,11 @@ engines:
 packageManager: pnpm@9.14.2
 
 dependencies:
-  find-up: ^7.0.0
+  "@danielbayley/matchup": ^1.0.1
+
 devDependencies:
   chokidar-cli: ^3.0.0
-  fs-fixture: ^2.6.0
+  fs-fixture: ^2.7.0
   jase: ^1.2.0
   publint: ^0.2.12
   replace-in-file: ^8.2.0
