@@ -29,12 +29,20 @@ console.log(root) // ~/path/to/project/root
 ~~~
 ~~~ js
 import {uproot} from "@danielbayley/uproot"
-const root = await uproot()
+const cwd  = import.meta.dirname
+const root = await uproot({ cwd })
 ~~~
 
-You can override these search paths by passing alternatives to `uproot`:
+You can override the above search patterns with the `match` option:
 ~~~ js
-const root = await uproot(".github", ".vscode")
+const root = await uproot({ match: ["tsconfig.json"] })
+~~~
+or append an additional pattern to find:
+~~~ js
+import { uproot, match } from "@danielbayley/uproot"
+
+match.push("tsconfig.json")
+const root = await uproot({ match })
 ~~~
 
 ## Install
