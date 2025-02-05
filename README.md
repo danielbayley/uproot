@@ -6,15 +6,21 @@ Reliable method to find the root path of your `git` repository,
 The algorithm is primarily reliant on [`git rev-parse --show-toplevel`][git],
 but will fallback on the following files to find the root path:
 
-1. [`pnpm-workspace.yaml`]
-2. [`package.yaml`]
-3. [`package.json`]
-4. [`pnpm-lock.yaml`]
-5. [`yarn.lock`]
-6. [`package-lock.json`]
-7. [`npm-shrinkwrap.json`]
-8. [`.npmrc`]
-9. [`.gitignore`]
+| Path/pattern            | Example                 |
+|:------------------------|:------------------------|
+| `pnpm-*.yaml`           | [`pnpm-workspace.yaml`] |
+| `package.{yaml,json}`   | [`package.yaml`]        |
+| [`package-lock.json`]   |                         |
+| [`npm-shrinkwrap.json`] |                         |
+| [`yarn.lock`]           |                         |
+| [`.git*`]               | [`.gitignore`]          |
+| `.n[pv]mrc`             | [`.npmrc`]              |
+| [`.editorconfig`]       |                         |
+| `LICEN[SC]E*`           | `LICENSE.md`            |
+| [`.vscode/`]            |                         |
+| [`packages/`]           |                         |
+| `src/`                  |                         |
+| [`public/`]             |                         |
 
 ## Examples
 ~~~ js
@@ -79,10 +85,12 @@ License
 
 [`pnpm-workspace.yaml`]:  https://pnpm.io/pnpm-workspace_yaml
 [`package.yaml`]:         https://github.com/pnpm/pnpm/pull/1799
-[`package.json`]:         https://docs.npmjs.com/creating-a-package-json-file
-[`pnpm-lock.yaml`]:       https://pnpm.io/git#lockfiles
-[`yarn.lock`]:            https://classic.yarnpkg.com/docs/yarn-lock
 [`package-lock.json`]:    https://docs.npmjs.com/cli/configuring-npm/package-lock-json
 [`npm-shrinkwrap.json`]:  https://docs.npmjs.com/cli/configuring-npm/npm-shrinkwrap-json
-[`.npmrc`]:               https://pnpm.io/npmrc
+[`yarn.lock`]:            https://classic.yarnpkg.com/docs/yarn-lock
 [`.gitignore`]:           https://git-scm.com/docs/gitignore#_description
+[`.npmrc`]:               https://pnpm.io/npmrc
+[`.editorconfig`]:        https://editorconfig.org
+[`.vscode/`]:             https://code.visualstudio.com/docs/getstarted/settings#_workspace-settings
+[`packages/`]:            https://pnpm.io/catalogs#the-catalog-protocol-catalog
+[`public/`]:              https://create-react-app.dev/docs/using-the-public-folder
