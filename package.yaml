@@ -61,3 +61,4 @@ scripts:
     git push   --follow-tags
 
   watch: pnpm test --watch
+  clean: git clean -X --force
