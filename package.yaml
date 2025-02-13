@@ -62,3 +62,4 @@ scripts:
 
   watch: pnpm test --watch
   clean: git clean -X --force
+  zap: pnpm clean && rm -rf node_modules || true
