@@ -1,5 +1,5 @@
 # https://docs.npmjs.com/cli/configuring-npm/package-json
-version: 0.1.1
+version: 0.1.2
 name: "@danielbayley/uproot"
 description: Reliable method to find the root path of your git repo, [p]npm/yarn package or app.
 keywords:
