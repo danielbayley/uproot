@@ -61,7 +61,7 @@ pnpm install @danielbayley/matchup
 ~~~
 > [!IMPORTANT]
 > This package is _[ESM]_ [only], so must be [`import`]ed instead of [`require`]d,
-> and [depends] on _[Node]_ [`>=`][][`20`].
+> and [depends] on [_Node_.js] [`>=`][][`20`].
 
 Specify this requirement with [`engines`] and/or [`devEngines`]:
 ~~~ jsonc
@@ -85,7 +85,7 @@ License
 [MIT]:                    LICENSE.md
 [Daniel Bayley]:          https://github.com/danielbayley
 
-[node]:                   https://nodejs.org
+[_Node_.js]:              https://nodejs.org
 [ESM]:                    https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules
 [only]:                   https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
 [`import`]:               https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/import
